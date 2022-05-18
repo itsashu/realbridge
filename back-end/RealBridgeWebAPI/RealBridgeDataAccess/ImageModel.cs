@@ -9,11 +9,14 @@
 
 namespace RealBridgeDataAccess
 {
-    public partial class Image
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class ImageModel
     {
-        public int ImageId { get; set; }
-        public string ImageTitle { get; set; }
-        public string ImageDescription { get; set; }
-        public byte[] ImageData { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public byte[] Image { get; set; }
     }
 }

@@ -16,38 +16,38 @@ namespace RealBridgeWebAPI.Services
             _realBridgeDBEntities = realBridgeDBEntities;
         }
 
-        public async Task<List<Image>> GetAllImages() => 
-            await _realBridgeDBEntities.Images.AsNoTracking().ToListAsync().ConfigureAwait(false);
+        public async Task<List<ImageModel>> GetAllImages() => 
+            await _realBridgeDBEntities.ImageModels.AsNoTracking().ToListAsync().ConfigureAwait(false);
 
-        public async Task<Image> GetImageById(int imageId) => 
-            await _realBridgeDBEntities.Images.AsNoTracking().FirstOrDefaultAsync(img => img.ImageId == imageId);
+        public async Task<ImageModel> GetImageById(int id) => 
+            await _realBridgeDBEntities.ImageModels.AsNoTracking().FirstOrDefaultAsync(img => img.Id == id);
 
-        public async Task AddImage(Image image)
+        public async Task AddImage(ImageModel image)
         {
-            _realBridgeDBEntities.Images.Add(image);
+            _realBridgeDBEntities.ImageModels.Add(image);
             await _realBridgeDBEntities.SaveChangesAsync();
         }
 
-        public async Task UpdateImageDetails(Image updatedImage)
+        public async Task UpdateImageDetails(ImageModel updatedImage)
         {
-            var image = await _realBridgeDBEntities.Images.FirstOrDefaultAsync(img => img.ImageId == updatedImage.ImageId).ConfigureAwait(false);
-            if (image.ImageId != 0)
+            var image = await _realBridgeDBEntities.ImageModels.FirstOrDefaultAsync(img => img.Id == updatedImage.Id).ConfigureAwait(false);
+            if (image.Id != 0)
             {
-                image.ImageTitle = updatedImage.ImageTitle;
-                image.ImageDescription = updatedImage.ImageDescription;
-                image.ImageData = updatedImage.ImageData;
+                image.Title = updatedImage.Title;
+                image.Description = updatedImage.Description;
+                image.Image = updatedImage.Image;
                 await _realBridgeDBEntities.SaveChangesAsync();
             }
             else
                 throw new ObjectNotFoundException();
         }
 
-        public async Task DeleteImageById(int imageId)
+        public async Task DeleteImageById(int id)
         {
-            Image image = await _realBridgeDBEntities.Images.AsNoTracking().FirstOrDefaultAsync(img => img.ImageId == imageId).ConfigureAwait(false);
-            if (image.ImageId != 0)
+            ImageModel image = await _realBridgeDBEntities.ImageModels.AsNoTracking().FirstOrDefaultAsync(img => img.Id == id).ConfigureAwait(false);
+            if (image.Id != 0)
             {
-                _realBridgeDBEntities.Images.Remove(image);
+                _realBridgeDBEntities.ImageModels.Remove(image);
                 await _realBridgeDBEntities.SaveChangesAsync();
             }
             else

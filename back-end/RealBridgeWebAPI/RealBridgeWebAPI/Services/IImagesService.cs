@@ -6,10 +6,10 @@ namespace RealBridgeWebAPI.Services
 {
     public interface IImagesService
     {
-        Task<List<Image>> GetAllImages();
-        Task<Image> GetImageById(int imageId);
-        Task AddImage(Image image);
-        Task UpdateImageDetails(Image updatedImage);
-        Task DeleteImageById(int imageId);
+        Task<List<ImageModel>> GetAllImages();
+        Task<ImageModel> GetImageById(int id);
+        Task AddImage(ImageModel image);
+        Task UpdateImageDetails(ImageModel updatedImage);
+        Task DeleteImageById(int id);
     }
 }

@@ -50,53 +50,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Image.cs">
-      <DependentUpon>RealBridgeImagesDataModel.tt</DependentUpon>
+    <Compile Include="ImageModel.cs">
+      <DependentUpon>RealBridgeDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RealBridgeImagesDataModel.Context.cs">
+    <Compile Include="RealBridgeDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RealBridgeImagesDataModel.Context.tt</DependentUpon>
+      <DependentUpon>RealBridgeDataModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="RealBridgeImagesDataModel.cs">
+    <Compile Include="RealBridgeDataModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RealBridgeImagesDataModel.tt</DependentUpon>
+      <DependentUpon>RealBridgeDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="RealBridgeImagesDataModel.Designer.cs">
+    <Compile Include="RealBridgeDataModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RealBridgeImagesDataModel.edmx</DependentUpon>
+      <DependentUpon>RealBridgeDataModel.edmx</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="RealBridgeImagesDataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>RealBridgeImagesDataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <None Include="RealBridgeImagesDataModel.edmx.diagram">
-      <DependentUpon>RealBridgeImagesDataModel.edmx</DependentUpon>
+    <EntityDeploy Include="RealBridgeDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RealBridgeDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="RealBridgeDataModel.edmx.diagram">
+      <DependentUpon>RealBridgeDataModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="RealBridgeImagesDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RealBridgeImagesDataModel.Context.cs</LastGenOutput>
-      <DependentUpon>RealBridgeImagesDataModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="RealBridgeImagesDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RealBridgeImagesDataModel.edmx</DependentUpon>
-      <LastGenOutput>RealBridgeImagesDataModel.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="RealBridgeDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RealBridgeDataModel.edmx</DependentUpon>
+      <LastGenOutput>RealBridgeDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="RealBridgeDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RealBridgeDataModel.edmx</DependentUpon>
+      <LastGenOutput>RealBridgeDataModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -25,7 +25,7 @@ namespace RealBridgeWebAPI.Controllers
         {
             try
             {
-                List<Image> images = await _imagesService.GetAllImages().ConfigureAwait(false);
+                List<ImageModel> images = await _imagesService.GetAllImages().ConfigureAwait(false);
                 return Request.CreateResponse(HttpStatusCode.OK, images);
             }
             catch (Exception ex)
@@ -36,17 +36,17 @@ namespace RealBridgeWebAPI.Controllers
 
         // GET api/images?imageId={imageId:int}
         [HttpGet]
-        public async Task<HttpResponseMessage> GetImageByIdAsync(int imageId)
+        public async Task<HttpResponseMessage> GetImageByIdAsync(int id)
         {
-            if (imageId < 1)
-                return Request.CreateResponse(HttpStatusCode.BadRequest, $"Invalid imageId: {imageId} provided");
+            if (id < 1)
+                return Request.CreateResponse(HttpStatusCode.BadRequest, $"Invalid imageId: {id} provided");
 
             try
             {
-                var image = await _imagesService.GetImageById(imageId).ConfigureAwait(false);
+                var image = await _imagesService.GetImageById(id).ConfigureAwait(false);
                 return image != null 
                     ? Request.CreateResponse(HttpStatusCode.OK, image) 
-                    : Request.CreateResponse(HttpStatusCode.NotFound, $"Image with ImageId: {imageId} not found");
+                    : Request.CreateResponse(HttpStatusCode.NotFound, $"Image with ImageId: {id} not found");
             }
             catch (Exception ex)
             {
@@ -56,7 +56,7 @@ namespace RealBridgeWebAPI.Controllers
 
         // POST api/images
         [HttpPost]
-        public async Task<HttpResponseMessage> PostAsync([FromBody] Image image)
+        public async Task<HttpResponseMessage> PostAsync([FromBody] ImageModel image)
         {
             if (image == null)
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Invalid image details provided");
@@ -74,7 +74,7 @@ namespace RealBridgeWebAPI.Controllers
 
         // PUT api/images
         [HttpPut]
-        public async Task<HttpResponseMessage> PutAsync([FromBody] Image image)
+        public async Task<HttpResponseMessage> PutAsync([FromBody] ImageModel image)
         {
             if (image == null)
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Invalid image details provided");
@@ -96,14 +96,14 @@ namespace RealBridgeWebAPI.Controllers
 
         // DELETE api/images/{imageId: int}
         [HttpDelete]
-        public async Task<HttpResponseMessage> DeleteImageByIdAsync(int imageId)
+        public async Task<HttpResponseMessage> DeleteImageByIdAsync(int id)
         {
-            if (imageId < 1)
+            if (id < 1)
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Invalid imageId");
 
             try
             {
-                await _imagesService.DeleteImageById(imageId).ConfigureAwait(false);
+                await _imagesService.DeleteImageById(id).ConfigureAwait(false);
                 return Request.CreateResponse(HttpStatusCode.NoContent);
             }
             catch (ObjectNotFoundException ex)

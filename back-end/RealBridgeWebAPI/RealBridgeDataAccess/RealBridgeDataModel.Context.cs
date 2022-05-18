@@ -9,6 +9,7 @@
 
 namespace RealBridgeDataAccess
 {
+    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
@@ -24,6 +25,6 @@ namespace RealBridgeDataAccess
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<ImageModel> ImageModels { get; set; }
     }
 }
