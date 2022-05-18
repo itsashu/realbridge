@@ -27,8 +27,8 @@
             <PropertyRef Name="ImageId" />
           </Key>
           <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ImageTitle" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="ImageDescription" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ImageTitle" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="ImageDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityContainer Name="RealBridgeDBEntities" annotation:LazyLoadingEnabled="true">

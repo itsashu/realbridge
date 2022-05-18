@@ -11,7 +11,7 @@ namespace RealBridgeDataAccess
 {
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class RealBridgeDBEntities : DbContext
     {
         public RealBridgeDBEntities()
