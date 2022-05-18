@@ -9,8 +9,7 @@
 
 namespace RealBridgeDataAccess
 {
-
-    public class Image
+    public partial class Image
     {
         public int ImageId { get; set; }
         public string ImageTitle { get; set; }
