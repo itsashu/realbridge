@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32428.217
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealBridgeWebAPI", "RealBridgeWebAPI\RealBridgeWebAPI.csproj", "{E05858F9-116B-40F4-BE30-9B9007C6D763}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealBridgeDataAccess", "RealBridgeDataAccess\RealBridgeDataAccess.csproj", "{B9301E4F-3E3A-469B-AFD3-A7E898659054}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E05858F9-116B-40F4-BE30-9B9007C6D763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E05858F9-116B-40F4-BE30-9B9007C6D763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E05858F9-116B-40F4-BE30-9B9007C6D763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E05858F9-116B-40F4-BE30-9B9007C6D763}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9301E4F-3E3A-469B-AFD3-A7E898659054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9301E4F-3E3A-469B-AFD3-A7E898659054}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9301E4F-3E3A-469B-AFD3-A7E898659054}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9301E4F-3E3A-469B-AFD3-A7E898659054}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AD0866F5-7585-4875-B884-5211A535D3FF}
+	EndGlobalSection
+EndGlobal

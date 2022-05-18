@@ -1,0 +1,12 @@
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeDataAccess\bin\Debug\RealBridgeDataAccess.dll.config
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeDataAccess\bin\Debug\RealBridgeDataAccess.dll
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeDataAccess\bin\Debug\RealBridgeDataAccess.pdb
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeDataAccess\bin\Debug\EntityFramework.dll
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeDataAccess\bin\Debug\EntityFramework.xml
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeDataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeDataAccess\obj\Debug\RealBridgeDataAccess.csproj.AssemblyReference.cache
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeDataAccess\obj\Debug\RealBridgeDataAccess.csproj.CoreCompileInputs.cache
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeDataAccess\obj\Debug\RealBridgeDataAccess.csproj.CopyComplete
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeDataAccess\obj\Debug\RealBridgeDataAccess.dll
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeDataAccess\obj\Debug\RealBridgeDataAccess.pdb
