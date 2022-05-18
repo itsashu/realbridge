@@ -20,6 +20,7 @@ namespace RealBridgeWebAPI.Controllers
         }
 
         // GET api/images
+        [HttpGet]
         public async Task<HttpResponseMessage> GetAllImagesAsync()
         {
             try
@@ -33,7 +34,8 @@ namespace RealBridgeWebAPI.Controllers
             }
         }
 
-        // GET api/images/{imageId:int}
+        // GET api/images?imageId={imageId:int}
+        [HttpGet]
         public async Task<HttpResponseMessage> GetImageByIdAsync(int imageId)
         {
             if (imageId < 1)
@@ -53,6 +55,7 @@ namespace RealBridgeWebAPI.Controllers
         }
 
         // POST api/images
+        [HttpPost]
         public async Task<HttpResponseMessage> PostAsync([FromBody] Image image)
         {
             if (image == null)
@@ -70,6 +73,7 @@ namespace RealBridgeWebAPI.Controllers
         }
 
         // PUT api/images
+        [HttpPut]
         public async Task<HttpResponseMessage> PutAsync([FromBody] Image image)
         {
             if (image == null)
@@ -91,6 +95,7 @@ namespace RealBridgeWebAPI.Controllers
         }
 
         // DELETE api/images/{imageId: int}
+        [HttpDelete]
         public async Task<HttpResponseMessage> DeleteImageByIdAsync(int imageId)
         {
             if (imageId < 1)

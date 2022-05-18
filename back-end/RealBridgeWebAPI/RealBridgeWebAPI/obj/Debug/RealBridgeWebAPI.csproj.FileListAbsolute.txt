@@ -90,3 +90,16 @@ C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeWebAPI\bin\RealB
 C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeWebAPI\bin\RealBridgeDataAccess.dll.config
 C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeWebAPI\bin\EntityFramework.xml
 C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeWebAPI\bin\EntityFramework.SqlServer.xml
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeWebAPI\bin\Ninject.dll
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeWebAPI\bin\Ninject.Web.Common.dll
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeWebAPI\bin\Ninject.Web.Common.WebHost.dll
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeWebAPI\bin\Ninject.Web.WebApi.dll
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeWebAPI\bin\Ninject.Web.WebApi.WebHost.dll
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeWebAPI\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeWebAPI\bin\WebActivatorEx.dll
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeWebAPI\bin\Ninject.xml
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeWebAPI\bin\Ninject.Web.Common.xml
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeWebAPI\bin\Ninject.Web.Common.WebHost.xml
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeWebAPI\bin\Ninject.Web.WebApi.xml
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeWebAPI\bin\Ninject.Web.WebApi.WebHost.xml
+C:\Ashu\projects\realbridge\back-end\RealBridgeWebAPI\RealBridgeWebAPI\bin\System.Runtime.CompilerServices.Unsafe.xml
