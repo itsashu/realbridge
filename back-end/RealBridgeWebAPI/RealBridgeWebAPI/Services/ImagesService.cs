@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace RealBridgeWebAPI.Services
@@ -16,10 +17,10 @@ namespace RealBridgeWebAPI.Services
         }
 
         public async Task<List<Image>> GetAllImages() => 
-            await _realBridgeDBEntities.Images.ToListAsync().ConfigureAwait(false);
+            await _realBridgeDBEntities.Images.AsNoTracking().ToListAsync().ConfigureAwait(false);
 
         public async Task<Image> GetImageById(int imageId) => 
-            await _realBridgeDBEntities.Images.FirstAsync(img => img.ImageId == imageId).ConfigureAwait(false);
+            await _realBridgeDBEntities.Images.AsNoTracking().FirstOrDefaultAsync(img => img.ImageId == imageId);
 
         public async Task AddImage(Image image)
         {
@@ -29,8 +30,8 @@ namespace RealBridgeWebAPI.Services
 
         public async Task UpdateImageDetails(Image updatedImage)
         {
-            var image = await _realBridgeDBEntities.Images.FirstAsync(img => img.ImageId == updatedImage.ImageId).ConfigureAwait(false);
-            if (image != null)
+            var image = await _realBridgeDBEntities.Images.FirstOrDefaultAsync(img => img.ImageId == updatedImage.ImageId).ConfigureAwait(false);
+            if (image.ImageId != 0)
             {
                 image.ImageTitle = updatedImage.ImageTitle;
                 image.ImageDescription = updatedImage.ImageDescription;
@@ -43,8 +44,8 @@ namespace RealBridgeWebAPI.Services
 
         public async Task DeleteImageById(int imageId)
         {
-            var image = await _realBridgeDBEntities.Images.FirstAsync(img => img.ImageId == imageId).ConfigureAwait(false);
-            if (image != null)
+            Image image = await _realBridgeDBEntities.Images.AsNoTracking().FirstOrDefaultAsync(img => img.ImageId == imageId).ConfigureAwait(false);
+            if (image.ImageId != 0)
             {
                 _realBridgeDBEntities.Images.Remove(image);
                 await _realBridgeDBEntities.SaveChangesAsync();

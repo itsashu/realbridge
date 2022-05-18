@@ -22,8 +22,8 @@ IF OBJECT_ID (N'Images', N'U') IS NULL
 		PRINT 'creating new table: Images';
 		CREATE TABLE Images (
 			ImageId int identity primary key,
-			ImageTitle nvarchar(20),
-			ImageDescription nvarchar(20) null,
+			ImageTitle nvarchar(40),
+			ImageDescription nvarchar(100) null,
 			ImageData varbinary(max) null,
 		);
 		PRINT 'Created new table: Images';

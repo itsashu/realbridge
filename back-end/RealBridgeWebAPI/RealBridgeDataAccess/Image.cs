@@ -12,7 +12,7 @@ namespace RealBridgeDataAccess
 
     public class Image
     {
-        public int? ImageId { get; set; }
+        public int ImageId { get; set; }
         public string ImageTitle { get; set; }
         public string ImageDescription { get; set; }
         public byte[] ImageData { get; set; }
