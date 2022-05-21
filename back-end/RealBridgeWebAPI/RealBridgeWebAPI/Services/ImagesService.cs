@@ -44,7 +44,7 @@ namespace RealBridgeWebAPI.Services
 
         public async Task DeleteImageById(int id)
         {
-            ImageModel image = await _realBridgeDBEntities.ImageModels.AsNoTracking().FirstOrDefaultAsync(img => img.Id == id).ConfigureAwait(false);
+            ImageModel image = await _realBridgeDBEntities.ImageModels.FirstOrDefaultAsync(img => img.Id == id).ConfigureAwait(false);
             if (image.Id != 0)
             {
                 _realBridgeDBEntities.ImageModels.Remove(image);

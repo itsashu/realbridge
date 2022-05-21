@@ -117,7 +117,7 @@ namespace RealBridgeWebAPI.Controllers
             }
         }
 
-        // DELETE api/images/{imageId: int}
+        // DELETE api/images/?imageId={imageId:int}
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteImageByIdAsync(int id)
         {
