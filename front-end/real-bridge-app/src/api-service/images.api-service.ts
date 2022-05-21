@@ -1,21 +1,24 @@
 import { WEBAPI_DOMAIN_ADDRESS } from "../configs/app.config";
-import { ImageType } from "../types/types";
+import { ImageInfoType, ImageType } from "../types/types";
 
 export const CONTROLLER: string = "images";
 
 const url: string = `${WEBAPI_DOMAIN_ADDRESS}/${CONTROLLER}`;
 
-export const saveNewImageApi = async (image: ImageType): Promise<any> =>
+export const saveNewImageApi = async (image: FormData): Promise<any> =>
   await fetch(url, {
     method: "POST",
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json",
+      // "Content-Type": "application/json",
+      // "Content-Type": "multipart/form-data",
+      // type: "formData",
+      // enctype: "multipart/form-data",
     },
-    body: JSON.stringify(image),
+    body: image,
   });
 
-export const updateImageApi = async (image: ImageType): Promise<any> =>
+export const updateImageApi = async (image: ImageInfoType): Promise<any> =>
   await fetch(url, {
     method: "PUT",
     headers: {
@@ -30,7 +33,6 @@ export const getAllImagesApi = async (): Promise<ImageType[]> => {
     method: "GET",
   });
   const images: ImageType[] = await response.json();
-  console.dir("users \n" + JSON.stringify(images));
   return images;
 };
 

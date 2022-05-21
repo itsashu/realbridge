@@ -1,6 +1,9 @@
-export type ImageType = {
-  id?: number;
-  title: string;
-  description?: string;
-  image: any;
+export type ImageInfoType = {
+  Id?: number;
+  Title: string;
+  Description: string;
+};
+
+export type ImageType = ImageInfoType & {
+  Image: any;
 };

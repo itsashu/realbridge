@@ -1,0 +1,24 @@
+.top-nav {
+  height: 40px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: cornflowerblue;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  text-align: left;
+  padding: 10px 5px 0px 10px;
+}
+
+.search {
+  position: fixed;
+  right: 10px;
+  border-radius: 3px;
+}
+
+.nav-buttons {
+  width: 100px !important;
+}

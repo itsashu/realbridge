@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  width: 31vw;
+  height: 45vh;
+  border: 1px solid gray;
+  background-color: azure;
+  border-radius: 10px;
+  box-shadow: 0px 3px 3px 0px darkgray;
+  margin: 5px;
+  padding: 5px;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.inputs {
+  display: inline-flex;
+  flex-direction: row;
+  width: auto;
+  margin: 2px 5px;
+}
+
+.image {
+  max-width: 30vw;
+  max-height: 35vh;
+  border-radius: 5px;
+}
+
+input {
+  width: 30vw;
+}

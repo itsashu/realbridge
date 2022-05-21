@@ -1,37 +1,52 @@
 import { ReactElement, useState } from "react";
 import { saveNewImageApi } from "../api-service/images.api-service";
 import { ImageType } from "../types/types";
+import "./card.css";
 
-export const UploadImage = (): ReactElement => {
+export type UploadImagePropsType = {
+  addImageCallback: (image: ImageType) => void;
+};
+
+export const UploadImage = ({
+  addImageCallback,
+}: UploadImagePropsType): ReactElement => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  const [imageDescription, setImageDescription] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   const [error, setError] = useState<string>("");
 
   const uploadImage = async () => {
     if (selectedImage) {
-      const newImage: ImageType = {
-        title: selectedImage?.name,
-        description: imageDescription,
-        image: selectedImage,
-      };
+      const newImage = new FormData();
+      newImage.append("Title", title);
+      newImage.append("Description", description);
+      newImage.append("Image", selectedImage);
 
       try {
         await saveNewImageApi(newImage);
         setSelectedImage(null);
-        setImageDescription("");
+        setDescription("");
+        setTitle("");
+        addImageCallback({
+          Title: title,
+          Description: description,
+          Image: selectedImage,
+        });
         setError("");
       } catch (ex) {
-        setError("failed to upload image");
+        setError("Failed to upload image");
       }
     }
   };
 
   return (
-    <div>
-      <h1>Upload image</h1>
+    <div className="container">
+      <label htmlFor="upload">Upload image</label>
       <input
+        id="upload"
         type="file"
         name="newImage"
+        accept="image/*"
         onChange={(event) => {
           if (event.target.files) {
             console.log(event.target.files[0]);
@@ -40,7 +55,6 @@ export const UploadImage = (): ReactElement => {
         }}
       />
       <br />
-
       <br />
       {selectedImage && (
         <div>
@@ -51,14 +65,24 @@ export const UploadImage = (): ReactElement => {
           />
           <br />
           <input
-            value={imageDescription}
-            placeholder="Image Description"
-            onChange={(event) => setImageDescription(event.target.value)}
+            value={title}
+            placeholder="Title"
+            onChange={(event) => setTitle(event.target.value)}
           />
           <br />
-          <button onClick={uploadImage}>Upload Image</button>
+          <input
+            value={description}
+            placeholder="Image Description"
+            onChange={(event) => setDescription(event.target.value)}
+          />
           <br />
-          <button onClick={() => setSelectedImage(null)}>Remove</button>
+          <input type="button" onClick={uploadImage} value="Upload Image" />
+          <br />
+          <input
+            type="button"
+            onClick={() => setSelectedImage(null)}
+            value="Remove"
+          />
         </div>
       )}
       {error}
