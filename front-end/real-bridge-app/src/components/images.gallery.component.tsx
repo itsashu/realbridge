@@ -9,13 +9,15 @@ export type ImagesGalleryPropsType = {
   page: number;
   addImageCallback: (image: ImageType) => void;
   updateImageCallback: (updatedImage: ImageInfoType) => void;
+  deleteImageCallback: (imageId: number) => void;
 };
 
-export const ImageGallery = ({
+export const ImagesGallery = ({
   images = [],
   page,
   addImageCallback,
   updateImageCallback,
+  deleteImageCallback,
 }: ImagesGalleryPropsType): ReactElement<ImagesGalleryPropsType> => (
   <div className="gallery">
     {images.length > 0 &&
@@ -26,6 +28,7 @@ export const ImageGallery = ({
               key={image.Id}
               imageFile={image}
               updateImageCallback={updateImageCallback}
+              deleteImageCallback={deleteImageCallback}
             />
           );
       })}

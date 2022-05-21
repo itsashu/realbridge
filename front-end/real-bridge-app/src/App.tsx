@@ -1,6 +1,9 @@
 import { ReactElement, useCallback, useEffect, useState } from "react";
-import { getAllImagesApi } from "./api-service/images.api-service";
-import { ImageGallery } from "./components/images.gallery.component";
+import {
+  deleteImageApi,
+  getAllImagesApi,
+} from "./api-service/images.api-service";
+import { ImagesGallery } from "./components/images.gallery.component";
 import { TopNavBar } from "./components/top.navbar.component";
 import { ImageInfoType, ImageType } from "./types/types";
 import "./App.css";
@@ -12,8 +15,8 @@ export const App = (): ReactElement => {
   const [searchText, setSearchText] = useState<string>("");
 
   useEffect(() => {
-    getSearchedImages();
-  }, [images]);
+    getAllImages();
+  }, []);
 
   const addImageCallback = useCallback(
     (image: ImageType) => {
@@ -32,7 +35,22 @@ export const App = (): ReactElement => {
     [images]
   );
 
-  const getSearchedImages = async () => {
+  const deleteImageCallback = useCallback(
+    async (imageId: number) => {
+      try {
+        await deleteImageApi(imageId);
+        const updatedImages: ImageType[] = images.filter(
+          (image) => image.Id !== imageId
+        );
+        setImages(updatedImages);
+      } catch (ex) {
+        setError("Unable to delete image.");
+      }
+    },
+    [images]
+  );
+
+  const getAllImages = async () => {
     try {
       const listOfImages: ImageType[] = await getAllImagesApi();
       setImages(listOfImages);
@@ -41,7 +59,7 @@ export const App = (): ReactElement => {
     }
   };
 
-  const getImages = (): ImageType[] =>
+  const getSearchedImages = (): ImageType[] =>
     images.filter(
       (image) =>
         image.Title.toLowerCase().includes(searchText) ||
@@ -58,11 +76,12 @@ export const App = (): ReactElement => {
         setPage={setPage}
       />
       <div className="gallery">
-        <ImageGallery
-          images={getImages()}
+        <ImagesGallery
+          images={getSearchedImages()}
           page={page}
           addImageCallback={addImageCallback}
           updateImageCallback={updateImageCallback}
+          deleteImageCallback={deleteImageCallback}
         />
       </div>
       {error}

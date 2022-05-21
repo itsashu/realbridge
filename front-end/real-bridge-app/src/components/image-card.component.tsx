@@ -6,11 +6,13 @@ import "./card.css";
 export type ImageCardPropsType = {
   imageFile: ImageType;
   updateImageCallback: (updatedImage: ImageInfoType) => void;
+  deleteImageCallback: (imageId: number) => void;
 };
 
 export const ImageCard = ({
   imageFile,
   updateImageCallback,
+  deleteImageCallback,
 }: ImageCardPropsType): ReactElement => {
   const [edit, setEdit] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
@@ -27,6 +29,7 @@ export const ImageCard = ({
     };
 
     try {
+      setEdit(false);
       await updateImageApi(updatedImage);
       updateImageCallback(updatedImage);
       setError("");
@@ -45,10 +48,10 @@ export const ImageCard = ({
       <div className="inputs">
         <label htmlFor="title">Title: </label>
         <input
+          required
           disabled={!edit}
           id="title"
           value={title}
-          placeholder="Image Title"
           onChange={(event) => setTitle(event.target.value)}
         />
       </div>
@@ -58,7 +61,6 @@ export const ImageCard = ({
           disabled={!edit}
           id="description"
           value={description}
-          placeholder="Image Description"
           onChange={(event) => setDescription(event.target.value)}
         />
       </div>
@@ -75,6 +77,12 @@ export const ImageCard = ({
           onClick={() => setEdit(!edit)}
           title={edit ? "Cancel" : "Edit Details"}
           value={edit ? "Cancel" : "Edit Details"}
+        />
+        <input
+          type="button"
+          onClick={() => deleteImageCallback(imageFile.Id ?? -1)}
+          title="Delete Image"
+          value="Delete Image"
         />
       </div>
       {error}

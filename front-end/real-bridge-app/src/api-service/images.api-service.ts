@@ -36,8 +36,8 @@ export const getAllImagesApi = async (): Promise<ImageType[]> => {
   return images;
 };
 
-export const getImagesByIdApi = async (imageId: number): Promise<ImageType> => {
-  const response = await fetch(`${url}?imageId=${imageId}`, {
+export const getImagesByIdApi = async (id: number): Promise<ImageType> => {
+  const response = await fetch(`${url}?id=${id}`, {
     method: "GET",
   });
   const image: ImageType = await response.json();
@@ -45,7 +45,7 @@ export const getImagesByIdApi = async (imageId: number): Promise<ImageType> => {
   return image;
 };
 
-export const deleteImageApi = async (imageId: number): Promise<any> =>
-  await fetch(url, {
+export const deleteImageApi = async (id: number): Promise<any> =>
+  await fetch(`${url}?id=${id}`, {
     method: "DELETE",
   });

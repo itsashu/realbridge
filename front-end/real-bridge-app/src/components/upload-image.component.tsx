@@ -65,6 +65,7 @@ export const UploadImage = ({
           />
           <br />
           <input
+            required
             value={title}
             placeholder="Title"
             onChange={(event) => setTitle(event.target.value)}
