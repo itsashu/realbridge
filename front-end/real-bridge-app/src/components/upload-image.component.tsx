@@ -41,19 +41,21 @@ export const UploadImage = ({
 
   return (
     <div className="container">
-      <label htmlFor="upload">Upload image</label>
-      <input
-        id="upload"
-        type="file"
-        name="newImage"
-        accept="image/*"
-        onChange={(event) => {
-          if (event.target.files) {
-            console.log(event.target.files[0]);
-            setSelectedImage(event.target.files[0]);
-          }
-        }}
-      />
+      <div className="upload">
+        <label htmlFor="upload">Upload image</label>
+        <input
+          id="upload"
+          type="file"
+          name="newImage"
+          accept="image/*"
+          onChange={(event) => {
+            if (event.target.files) {
+              console.log(event.target.files[0]);
+              setSelectedImage(event.target.files[0]);
+            }
+          }}
+        />
+      </div>
       <br />
       <br />
       {selectedImage && (
