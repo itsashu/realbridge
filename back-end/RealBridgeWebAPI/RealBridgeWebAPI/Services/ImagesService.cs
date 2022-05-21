@@ -24,6 +24,7 @@ namespace RealBridgeWebAPI.Services
 
         public async Task AddImage(ImageModel image)
         {
+            //ImageModel imageModel = new ImageModel { Description = image.description, Title = image.title, Image = image.image };
             _realBridgeDBEntities.ImageModels.Add(image);
             await _realBridgeDBEntities.SaveChangesAsync();
         }
@@ -35,7 +36,6 @@ namespace RealBridgeWebAPI.Services
             {
                 image.Title = updatedImage.Title;
                 image.Description = updatedImage.Description;
-                image.Image = updatedImage.Image;
                 await _realBridgeDBEntities.SaveChangesAsync();
             }
             else

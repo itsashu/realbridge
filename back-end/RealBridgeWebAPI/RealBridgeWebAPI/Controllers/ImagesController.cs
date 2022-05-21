@@ -3,9 +3,11 @@ using RealBridgeWebAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 
 namespace RealBridgeWebAPI.Controllers
@@ -44,8 +46,8 @@ namespace RealBridgeWebAPI.Controllers
             try
             {
                 var image = await _imagesService.GetImageById(id).ConfigureAwait(false);
-                return image != null 
-                    ? Request.CreateResponse(HttpStatusCode.OK, image) 
+                return image != null
+                    ? Request.CreateResponse(HttpStatusCode.OK, image)
                     : Request.CreateResponse(HttpStatusCode.NotFound, $"Image with ImageId: {id} not found");
             }
             catch (Exception ex)
@@ -56,20 +58,41 @@ namespace RealBridgeWebAPI.Controllers
 
         // POST api/images
         [HttpPost]
-        public async Task<HttpResponseMessage> PostAsync([FromBody] ImageModel image)
+        public async Task<HttpResponseMessage> PostAsync()
         {
-            if (image == null)
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Invalid image details provided");
-            
-            try
+            var httpRequest = HttpContext.Current.Request;
+            if (httpRequest.Files.Count > 0)
             {
-                await _imagesService.AddImage(image).ConfigureAwait(false);
-                return Request.CreateResponse(HttpStatusCode.Created);
+                try
+                {
+                    var files = new List<HttpPostedFile>();
+                    foreach (string eachfile in httpRequest.Files)
+                    {
+                        var postedFile = httpRequest.Files[eachfile];
+                        files.Add(postedFile);
+                    }
+
+                    var file = files[0];
+                    byte[] imageBuffer = new byte[file.ContentLength];
+                    using (var binaryReader = new BinaryReader(file.InputStream))
+                    {
+                        imageBuffer = binaryReader.ReadBytes(file.ContentLength);
+                    }
+                    file.InputStream.Read(imageBuffer, 0, file.ContentLength);
+
+                    var formData = httpRequest.Form;
+                    ImageModel image = new ImageModel { Title = formData.Get("title"), Description = formData.Get("description"), Image = imageBuffer };
+
+                    await _imagesService.AddImage(image).ConfigureAwait(false);
+
+                    return Request.CreateResponse(HttpStatusCode.Created);
+                }
+                catch (Exception ex)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+                }
             }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
-            }
+            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invaid Input or file");
         }
 
         // PUT api/images
