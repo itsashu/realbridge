@@ -22,11 +22,12 @@ namespace RealBridgeWebAPI.Services
         public async Task<ImageModel> GetImageById(int id) => 
             await _realBridgeDBEntities.ImageModels.AsNoTracking().FirstOrDefaultAsync(img => img.Id == id);
 
-        public async Task AddImage(ImageModel image)
+        public async Task<List<ImageModel>> AddImage(ImageModel image)
         {
-            //ImageModel imageModel = new ImageModel { Description = image.description, Title = image.title, Image = image.image };
             _realBridgeDBEntities.ImageModels.Add(image);
             await _realBridgeDBEntities.SaveChangesAsync();
+
+            return await _realBridgeDBEntities.ImageModels.AsNoTracking().ToListAsync().ConfigureAwait(false);
         }
 
         public async Task UpdateImageDetails(ImageModel updatedImage)

@@ -8,7 +8,7 @@ namespace RealBridgeWebAPI.Services
     {
         Task<List<ImageModel>> GetAllImages();
         Task<ImageModel> GetImageById(int id);
-        Task AddImage(ImageModel image);
+        Task<List<ImageModel>> AddImage(ImageModel image);
         Task UpdateImageDetails(ImageModel updatedImage);
         Task DeleteImageById(int id);
     }

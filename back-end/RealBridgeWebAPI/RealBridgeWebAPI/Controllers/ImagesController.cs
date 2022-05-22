@@ -83,9 +83,9 @@ namespace RealBridgeWebAPI.Controllers
                     var formData = httpRequest.Form;
                     ImageModel image = new ImageModel { Title = formData.Get("title"), Description = formData.Get("description"), Image = imageBuffer };
 
-                    await _imagesService.AddImage(image).ConfigureAwait(false);
+                    List<ImageModel> images =  await _imagesService.AddImage(image).ConfigureAwait(false);
 
-                    return Request.CreateResponse(HttpStatusCode.Created);
+                    return Request.CreateResponse(HttpStatusCode.Created, images);
                 }
                 catch (Exception ex)
                 {
