@@ -1,5 +1,4 @@
 import { ReactElement, useState } from "react";
-import { saveNewImageApi } from "../api-service/images.api-service";
 import { ImageType } from "../types/types";
 import "./card.css";
 
@@ -9,39 +8,30 @@ export type UploadImagePropsType = {
 
 export const UploadImage = ({
   addImageCallback,
-}: UploadImagePropsType): ReactElement => {
+}: UploadImagePropsType): ReactElement<UploadImagePropsType> => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const [error, setError] = useState<string>("");
 
-  const uploadImage = async () => {
+  const uploadImage = () => {
     if (selectedImage) {
-      const newImage = new FormData();
-      newImage.append("Title", title);
-      newImage.append("Description", description);
-      newImage.append("Image", selectedImage);
-
+      const newImage: ImageType = {
+        Title: title,
+        Description: description,
+        Image: selectedImage,
+      };
       try {
-        await saveNewImageApi(newImage);
+        addImageCallback(newImage);
         setSelectedImage(null);
         setDescription("");
         setTitle("");
-        addImageCallback({
-          Title: title,
-          Description: description,
-          Image: selectedImage,
-        });
-        setError("");
-      } catch (ex) {
-        setError("Failed to upload image");
-      }
+      } catch (err) {}
     }
   };
 
   return (
     <div className="container">
-      <div className="upload">
+      <div>
         <label htmlFor="upload">Upload image</label>
         <input
           id="upload"
@@ -56,39 +46,45 @@ export const UploadImage = ({
           }}
         />
       </div>
-      <br />
-      <br />
       {selectedImage && (
-        <div>
+        <div className="upload-inputs">
           <img
+            className="upload-image"
             alt="not found"
-            width={"250px"}
             src={URL.createObjectURL(selectedImage)}
           />
-          <br />
-          <input
-            required
-            value={title}
-            placeholder="Title"
-            onChange={(event) => setTitle(event.target.value)}
-          />
-          <br />
-          <input
-            value={description}
-            placeholder="Image Description"
-            onChange={(event) => setDescription(event.target.value)}
-          />
-          <br />
-          <input type="button" onClick={uploadImage} value="Upload Image" />
-          <br />
-          <input
-            type="button"
-            onClick={() => setSelectedImage(null)}
-            value="Remove"
-          />
+          <div className="inputs">
+            <label htmlFor="upload-title">Title*: </label>
+            <input
+              required={true}
+              id="upload-title"
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
+            />
+          </div>
+          <div className="inputs">
+            <label htmlFor="upload-description">Description: </label>
+            <input
+              id="upload-description"
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
+            />
+          </div>
+          <div className="inputs">
+            <input
+              type="button"
+              disabled={title.length === 0}
+              onClick={uploadImage}
+              value="Upload Image"
+            />
+            <input
+              type="button"
+              onClick={() => setSelectedImage(null)}
+              value="Remove"
+            />
+          </div>
         </div>
       )}
-      {error}
     </div>
   );
 };

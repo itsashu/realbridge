@@ -30,6 +30,7 @@ export const TopNavBar = ({
       ></input>
       {"   "}
       <input
+        disabled={currentPage === 0}
         className="nav-buttons"
         type="button"
         value="Previous Page"
@@ -39,6 +40,7 @@ export const TopNavBar = ({
       />{" "}
       Page {currentPage + 1}/{totalPages}{" "}
       <input
+        disabled={currentPage + 1 === totalPages}
         className="nav-buttons"
         type="button"
         value="Next Page"

@@ -5,18 +5,19 @@ export const CONTROLLER: string = "images";
 
 const url: string = `${WEBAPI_DOMAIN_ADDRESS}/${CONTROLLER}`;
 
-export const saveNewImageApi = async (image: FormData): Promise<any> =>
-  await fetch(url, {
+export const saveNewImageApi = async (
+  image: FormData
+): Promise<ImageType[]> => {
+  const response = await fetch(url, {
     method: "POST",
     headers: {
       Accept: "application/json",
-      // "Content-Type": "application/json",
-      // "Content-Type": "multipart/form-data",
-      // type: "formData",
-      // enctype: "multipart/form-data",
     },
     body: image,
   });
+  const images: ImageType[] = await response.json();
+  return images;
+};
 
 export const updateImageApi = async (image: ImageInfoType): Promise<any> =>
   await fetch(url, {

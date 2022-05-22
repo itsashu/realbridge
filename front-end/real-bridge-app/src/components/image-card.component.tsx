@@ -1,5 +1,4 @@
 import { ReactElement, useState } from "react";
-import { updateImageApi } from "../api-service/images.api-service";
 import { ImageInfoType, ImageType } from "../types/types";
 import "./card.css";
 
@@ -15,7 +14,6 @@ export const ImageCard = ({
   deleteImageCallback,
 }: ImageCardPropsType): ReactElement => {
   const [edit, setEdit] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
   const [title, setTitle] = useState<string>(imageFile.Title ?? "");
   const [description, setDescription] = useState<string>(
     imageFile.Description ?? ""
@@ -27,15 +25,7 @@ export const ImageCard = ({
       Title: title,
       Description: description,
     };
-
-    try {
-      setEdit(false);
-      await updateImageApi(updatedImage);
-      updateImageCallback(updatedImage);
-      setError("");
-    } catch (ex) {
-      setError("Failed to update image");
-    }
+    updateImageCallback(updatedImage);
   };
 
   return (
@@ -46,7 +36,7 @@ export const ImageCard = ({
         src={`data:image/*;base64,${imageFile.Image}`}
       />
       <div className="inputs">
-        <label htmlFor="title">Title: </label>
+        <label htmlFor="title">Title*: </label>
         <input
           required
           disabled={!edit}
@@ -67,7 +57,7 @@ export const ImageCard = ({
       <div className="inputs">
         <input
           type="button"
-          disabled={!edit}
+          disabled={!edit || title.length === 0}
           onClick={updateImage}
           title="Update Image Details"
           value="Update Image Details"
@@ -80,12 +70,12 @@ export const ImageCard = ({
         />
         <input
           type="button"
+          disabled={edit}
           onClick={() => deleteImageCallback(imageFile.Id ?? -1)}
           title="Delete Image"
           value="Delete Image"
         />
       </div>
-      {error}
     </div>
   );
 };

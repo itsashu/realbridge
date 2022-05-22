@@ -32,6 +32,17 @@
   border-radius: 5px;
 }
 
+.upload-image {
+  max-width: 28vw;
+  max-height: 25vh;
+}
+
+.upload-inputs {
+  display: flex;
+  flex-direction: column;
+  max-width: 30vw;
+}
+
 input {
   width: 30vw;
 }
